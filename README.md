@@ -62,35 +62,36 @@ Transforms one side, while leaving the other side intact
 
 ### Mapping and promisifying
 
-#### .mapThen
-`Either<L, R> -> (R -> Promise<R2>) -> Either<L2, R>`
+Transforms an Either with a function that returns a promise, and promisifies the entire Either. This can be more convenient than having one side wrapped in a promise and one side not.
 
-Transforms the right hand side with a function that returns a promise, and promisifies the entire Either. This can be more convenient than having one side wrapped in a promise and one side not.
+#### .mapThen
+`Either<L, R> -> (R -> Promise<R2>) -> Promise<Either<L, R2>>`
 
 #### .leftMapThen
-leftMapThen<L2>(f: (l: L) => Promise<L2>): Promise<Either<L2, R>>
+`Either<L, R> -> (L -> Promise<L2>) -> Promise<Either<L2, R>>`
 
 ### Flat-Mapping
 
+Like mapping, but using a function that returns an Either. This is useful for flattening out and chaining `Either` producing functions.
+
 #### .flatMap
-flatMap<R2>(f: (r: R) => Either<L, R2>): Either<L, R2>
+`Either<L, R> -> (R -> Either<L, R2>) -> Either<L, R2>`
 
 #### .leftFlatMap
-leftFlatMap<L2>(f: (l: L) => Either<L2, R>): Either<L2, R>
+`Either<L, R> -> (L -> Either<L2, R>) -> Either<L2, R>`
 
-### Flat Mapping then Promisifying
+### Flat-Mapping then Promisifying
 
-#### .flatMapThen  
-flatMapThen<R2>(f: (r: R) => Promise<Either<L, R2>>): Promise<Either<L, R2>>
+#### .flatMapThen
+`Either<L, R> -> (R -> Promise<Either<L, R2>>) -> Promise<Either<L, R2>>`
 
 #### .leftFlatMapThen
-leftFlatMapThen<L2>(
-  	f: (l: L) => Promise<Either<L2, R>>): Promise<Either<L2, R>>
+`Either<L, R> -> (L -> Promise<Either<L2, R>>) -> Promise<Either<L2, R>>`
 
 ### Un-Wrapping
 
 #### .rightOrElse
-rightOrElse(f: (l: L) => R): R
+`Either<L, R> -> (L -> R) -> R`
 
 #### .value
 `Either<L, R> -> L | R`
