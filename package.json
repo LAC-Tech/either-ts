@@ -1,0 +1,14 @@
+{
+  "name": "either-ts",
+  "version": "1.0.26",
+  "description": "Zero-depedency implementation of 'Either' abstract datatype, for typescript and javascript",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "author": "Lewis Andrew Campbell",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "typecheck": "tsc --watch"
+  },
+  "dependencies": {}
+}
