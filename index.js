@@ -42,12 +42,30 @@ exports.partition = es => {
 	return [ls, rs]
 }
 
+/**
+	@template L, R
+	@type {Sig['sequence']}
+*/
+exports.sequence = es => {
+	/** @type {R[]} */
+	const rs = []
+
+	for(const e of es) {
+		if (!e.isOk) return e
+		rs.push(e.value)
+	}	
+
+	return exports.right(rs)
+}
+
 /** @template L, R */
 class Left {
 	/** @param {L} value */
 	constructor(value) { this.leftValue = value }
 
 	get value() { return this.leftValue }
+
+	get isOk() { return false }
 
 	/**
 		@template L2
@@ -125,6 +143,8 @@ class Right {
 	constructor(value) { this.rightValue = value }
 
 	get value() { return this.rightValue }
+
+	get isOk() { return true }
 
 	/**
 		@template L2

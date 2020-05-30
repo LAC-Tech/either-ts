@@ -97,3 +97,22 @@ Like mapping, but using a function that returns an Either. This is useful for fl
 `Either<L, R> -> L | R`
 
 Gets the raw value of an either. Useful for when you have used `map` and or `leftMap` to make the types the same.
+
+#### .isOk
+`Either<L, R> -> boolean`
+
+Returns true if it's right. If you're using this, you're using the either data type wrong.
+
+### Lists of Eithers
+
+These are free-standing functions, not methods of the `Either` object.
+
+#### either.partition
+`[Either<L, R>] -> [[L], [R]]`
+
+Returns a tuple of all the left values and all the right values in the list, in order.
+
+### either.sequence
+`[Either<L, R>] -> Either<L, R[]?`
+
+Returns the first left value in the list. Otherwise returns all the right values flattened into a list. Useful for parsing.

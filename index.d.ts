@@ -14,6 +14,7 @@ declare interface Either<L, R> {
   
   rightOrElse(f: (l: L) => R): R
   value: L | R
+  isOk: boolean
 }
 
 declare module 'either-ts' {
@@ -29,4 +30,5 @@ declare module 'either-ts' {
   function fromNullable<L, R>(err: L): (nullable: R | null | undefined) => Either<L, R>
 
   function partition<L, R>(es: Either<L, R>[]): [L[], R[]]
+  function sequence<L, R>(es: Either<L, R>[]): Either<L, R[]>
 }
