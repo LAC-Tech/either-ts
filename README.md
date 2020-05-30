@@ -8,7 +8,7 @@ This is written in Javascript, but can be used in Typescript, or in js files tha
 
 Either, aka Result, is a pattern for methods and functions that can return 'either' an error of type `L` or a normal result of type `R`. It's an alternative to error codes, or even using exceptions. The advantage is that it doesn't interrupt your control flow like exceptions and it doesn't let you ignore it like an error code.
 
-## Why have you made this and not used other EIther libraries floating around?
+## Why have you made this and not used other Either libraries floating around?
 
 Because this one is smaller, and just does one thing. It's not an attempt to reconstruct Haskell in Javascript - I am just taking one useful pattern I was productive with in other languages.
 
